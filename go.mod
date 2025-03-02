@@ -2,4 +2,4 @@ module TelegramGoBot
 
 go 1.24.0
 
-require github.com/OvyFlash/telegram-bot-api v0.0.0-20241219171906-3f2ca0c14ada // indirect
+require github.com/go-telegram/bot v1.14.0 // indirect
