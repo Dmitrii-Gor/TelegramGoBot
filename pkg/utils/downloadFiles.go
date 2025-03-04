@@ -6,7 +6,6 @@ import (
 	"os"
 )
 
-// Функция для скачивания файла
 func DownloadFile(fileName, url string) error {
 	// Делаем HTTP-запрос к Telegram-серверу
 	resp, err := http.Get(url)
