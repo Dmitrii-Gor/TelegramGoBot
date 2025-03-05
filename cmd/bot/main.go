@@ -18,7 +18,7 @@ func main() {
 	config.Init()
 
 	opts := []bot.Option{
-		bot.WithDefaultHandler(handlers.Handler),
+		bot.WithDefaultHandler(handlers.HandlerRoute),
 	}
 
 	b, err := bot.New(config.TelegramBotToken, opts...)
