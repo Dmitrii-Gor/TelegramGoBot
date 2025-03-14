@@ -1,6 +1,7 @@
 package utils
 
 import (
+	"TelegramGoBot/internal/config"
 	"context"
 	"fmt"
 	"google.golang.org/api/drive/v3"
@@ -13,7 +14,7 @@ import (
 
 func WordToPdfConvert(ctx context.Context, fileName string) (string, error) {
 
-	tokenSource, err := GetGoogleTokenData(ctx)
+	tokenSource, err := config.GetGoogleTokenData(ctx)
 	if err != nil {
 		log.Fatalf("Ошибка получения TokenSource: %v", err)
 	}
