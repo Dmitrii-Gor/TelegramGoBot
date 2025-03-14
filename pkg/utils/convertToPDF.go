@@ -70,5 +70,10 @@ func WordToPdfConvert(ctx context.Context, fileName string) (string, error) {
 		log.Fatalf("Ошибка записи в файл: %v", err)
 	}
 
+	err = srv.Files.Delete(uploadedFile.Id).Do()
+	if err != nil {
+		log.Fatalf("Ошибка удаления файла с drive: %v", err)
+	}
+
 	return newPdfFile, nil
 }
