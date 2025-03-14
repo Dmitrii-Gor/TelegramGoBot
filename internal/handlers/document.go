@@ -28,7 +28,13 @@ func DocumentHandler(ctx context.Context, b *bot.Bot, update *models.Update) {
 		fmt.Println("Ошибка скачивания файла:", err)
 	}
 
-	fileData, err := os.Open(localFilePath)
+	pfdFileToReturn, err := utils.WordToPdfConvert(ctx, localFilePath)
+	if err != nil {
+		fmt.Println("Ошибка в конвертации файла:", err)
+		return
+	}
+
+	fileData, err := os.Open(pfdFileToReturn)
 	if err != nil {
 		fmt.Println("Ошибка открытия файла:", err)
 		return
@@ -36,6 +42,7 @@ func DocumentHandler(ctx context.Context, b *bot.Bot, update *models.Update) {
 	defer func() {
 		fileData.Close()
 		err = os.Remove(localFilePath)
+		err = os.Remove(pfdFileToReturn)
 		if err != nil {
 			fmt.Println("Ошибка удаления файла:", err)
 		}
@@ -45,7 +52,7 @@ func DocumentHandler(ctx context.Context, b *bot.Bot, update *models.Update) {
 	_, err = b.SendDocument(ctx, &bot.SendDocumentParams{
 		ChatID: update.Message.Chat.ID,
 		Document: &models.InputFileUpload{
-			Filename: localFilePath,
+			Filename: pfdFileToReturn,
 			Data:     fileData,
 		},
 	})
