@@ -11,6 +11,6 @@ func TextHandler(ctx context.Context, b *bot.Bot, update *models.Update) {
 
 	_, _ = b.SendMessage(ctx, &bot.SendMessageParams{
 		ChatID: chatID,
-		Text:   "Привет! Отправь мне файл, и я верну его обратно 📁",
+		Text:   "Привет! Отправь мне файл, docx/doc, а я верну его в формате pdf",
 	})
 }
